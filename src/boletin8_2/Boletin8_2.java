@@ -22,7 +22,7 @@ public class Boletin8_2 {
 //        RadioButtons p = new RadioButtons();
         p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         p.setVisible(true);
-        p.setSize(350, 350);
+        p.setSize(350, 390);
     }
 
 }

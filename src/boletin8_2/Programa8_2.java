@@ -24,16 +24,16 @@ public class Programa8_2 extends JFrame {
 
         //Creación de los JButton
         btnMovilPad= new JButton[numerosPad.length];
-        int x = 80, y = 100;
+        int x = 75, y = 100;
         for (int i = 0; i < numerosPad.length; i++) {
             btnMovilPad[i] = new JButton(numerosPad[i]);
-            btnMovilPad[i].setSize(btnMovilPad[i].getPreferredSize());
+            btnMovilPad[i].setSize(50,50);
             btnMovilPad[i].setLocation(x, y);
 
-            x += 80;
+            x += 70;
             if ((i + 1) % 3 == 0) {
-                x = 80;
-                y += 40;
+                x = 75;
+                y += 60;
             }
 
             add(btnMovilPad[i]);
