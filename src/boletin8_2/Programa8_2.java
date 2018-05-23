@@ -33,7 +33,7 @@ public class Programa8_2 extends JFrame implements ActionListener {
     public Programa8_2() {
         super("Bol8.-Ejercicio 2");
         this.setLayout(null);
-
+        
         //Creación de los JButton
         btnMovilPad = new JButton[numerosPad.length];
         int x = 75, y = 120;
@@ -114,6 +114,8 @@ public class Programa8_2 extends JFrame implements ActionListener {
         mnuPrincipal.add(mnuMovil);
         mnuPrincipal.add(mnuOtros);
         this.setJMenuBar(mnuPrincipal);
+        
+       this.getContentPane().addKeyListener(new EventosRaton());
     }
 
     @Override
@@ -236,5 +238,19 @@ public class Programa8_2 extends JFrame implements ActionListener {
             }
         }
 
+    }
+    
+    private class EventosRaton extends KeyAdapter{
+    
+        @Override
+        
+        public void keyTyped( KeyEvent e){
+        
+        if(e.getKeyCode()== KeyEvent.VK_1){
+            System.err.println("asd");
+            txfPantalla.setText(txfPantalla.getText()+e.getKeyChar());
+        }
+        }
+    
     }
 }
