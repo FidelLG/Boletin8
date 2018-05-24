@@ -82,7 +82,7 @@ public class Programa8_1 extends JFrame implements KeyListener {
             f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             f.setVisible(true);
         }
-
+        System.err.println(ke.getKeyCode());
         lblTeclas.setText(String.format("Tecla: %c Codigo: %d", ke.getKeyChar(), ke.getKeyCode()));
 
     }

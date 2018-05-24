@@ -7,9 +7,7 @@ package boletin8_2;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -17,7 +15,7 @@ import javax.swing.*;
  *
  * @author fidi
  */
-public class Programa8_2 extends JFrame implements ActionListener {
+public class Programa8_2 extends JFrame implements ActionListener,KeyListener {
 
     JButton[] btnMovilPad;
     JButton btnReset;
@@ -33,6 +31,7 @@ public class Programa8_2 extends JFrame implements ActionListener {
     public Programa8_2() {
         super("Bol8.-Ejercicio 2");
         this.setLayout(null);
+        setFocusable(true);
         
         //Creación de los JButton
         btnMovilPad = new JButton[numerosPad.length];
@@ -43,6 +42,7 @@ public class Programa8_2 extends JFrame implements ActionListener {
             btnMovilPad[i].setFont(fontBtn);
             btnMovilPad[i].setLocation(x, y);
             btnMovilPad[i].addMouseListener(new FuncionesRaton());
+            btnMovilPad[i].addKeyListener(this);
 
             x += 75;
             if ((i + 1) % 3 == 0) {
@@ -115,7 +115,7 @@ public class Programa8_2 extends JFrame implements ActionListener {
         mnuPrincipal.add(mnuOtros);
         this.setJMenuBar(mnuPrincipal);
         
-       this.getContentPane().addKeyListener(new EventosRaton());
+        addKeyListener(this);
     }
 
     @Override
@@ -186,12 +186,26 @@ public class Programa8_2 extends JFrame implements ActionListener {
 
     }
 
-    private void guardarNumero() {
-        try (PrintWriter f = new PrintWriter(new FileWriter(home + "/agenda.txt", true))) {
-            f.println(txfPantalla.getText());
-        } catch (Exception e) {
-            System.err.println("Error de acceso al archivo");
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+        
+       
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        
+        if((ke.getKeyCode()>=48 && ke.getKeyCode()<=57) || ke.getKeyCode()== KeyEvent.VK_ASTERISK ||
+                ke.getKeyCode()==KeyEvent.VK_MULTIPLY){
+            txfPantalla.setText(txfPantalla.getText()+ke.getKeyChar());
         }
+          
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
     }
 
     private class FuncionesRaton implements MouseListener {
@@ -240,17 +254,50 @@ public class Programa8_2 extends JFrame implements ActionListener {
 
     }
     
-    private class EventosRaton extends KeyAdapter{
-    
-        @Override
-        
-        public void keyTyped( KeyEvent e){
-        
-        if(e.getKeyCode()== KeyEvent.VK_1){
-            System.err.println("asd");
-            txfPantalla.setText(txfPantalla.getText()+e.getKeyChar());
+    private void guardarNumero() {
+        try (PrintWriter f = new PrintWriter(new FileWriter(home + "/agenda.txt", true))) {
+            f.println(txfPantalla.getText());
+        } catch (Exception e) {
+            System.err.println("Error de acceso al archivo");
         }
-        }
-    
     }
+    
+//    private class EventosRaton implements KeyListener{
+//    
+//        @Override
+//        public void keyPressed(KeyEvent e){
+//            System.out.println(e.getKeyCode());
+//        }
+//        
+//        @Override
+//        public void keyTyped( KeyEvent e){
+//        
+//        if(e.getKeyCode()== KeyEvent.VK_1){
+//            System.err.println("asd");
+//            txfPantalla.setText(txfPantalla.getText()+e.getKeyChar());
+//        }
+//        }
+//    
+//    }
 }
+
+
+//Codigo caracteres
+//
+//48 - 0
+//49 - 1
+//50 - 2
+//51 - 3
+//52 - 4
+//53 - 5
+//54 - 6
+//55 - 7
+//56 - 8
+//57 - 9
+//106 *
+//65406 - altgr
+//51 - 3
+//16 - shift
+//17 - ctrl
+//18 - alt
+//521 +
